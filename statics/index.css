@@ -1,143 +1,93 @@
 :root {
-    /* Palette: Nord (https://www.nordtheme.com)*/
-    --nord00: #2e3440;
-    --nord01: #3b4252;
-    --nord02: #434c5e;
-    --nord03: #4c566a;
-    --nord04: #d8dee9;
-    --nord05: #e5e9f0;
-    --nord06: #eceff4;
-    --nord07: #8fbcbb;
-    --nord08: #88c0d0;
-    --nord09: #81a1c1;
-    --nord0A: #5e81ac;
-    --nord0B: #bf616a;
-    --nord0C: #d08770;
-    --nord0D: #ebcb8b;
-    --nord0E: #a3be8c;
-    --nord0F: #b48ead;
+    /* HuggingFace-inspired Color Palette */
+    --hf-yellow: #FFB627;
+    --hf-yellow-light: #FFE6B0;
 
+    --hf-purple: #6C63FF;
+    --hf-purple-light: #E7E5FF;
 
-    /* Typograph - GitHub Style */
-    --font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --hf-blue: #3F7FFF;
+    --hf-blue-light: #D9E4FF;
+
+    --hf-bg: #F7F7F8;
+    --hf-card-bg: #FFFFFF;
+    --hf-border: #E6E6E8;
+
+    --hf-text-strong: #2A2A2C;
+    --hf-text: #3B3B3D;
+    --hf-text-light: #6B6B6E;
+
+    --hf-shadow: rgba(0, 0, 0, 0.04);
+
+    /* Typography */
+    --font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
     --font-size-scaler: 62.5%;
     --font-size-m: 1.6rem;
     --font-size-s: 1.4rem;
-
-    /* Components - GitHub Style */
-    --body-color: #24292e;
-    --body-bg: #ffffff;
-
-    --header-title: #24292e;
-    --header-container: #ffffff;
-    --header-title-preffix: #0366d6;
-
-    --chip-font: #24292e;
-    --chip-color: #f1f3f5;
-
-    --icons: #586069;
-    --icons-hover: #0366d6;
-
-    --day-container: #f6f8fa;
-    --date: #24292e;
-
-    --summary: #0366d6;
-    --summary-hover: #005cc5;
-
-    --details-open: #f6f8fa;
-    --details-content: #24292e;
-    --details-a: #0366d6;
-    --details-a-hover: #005cc5;
-
-    --highlight-title: #d73a49;
-    --highlight-author: #e36209;
-
-    --article-summary-hover-color: #0366d6;
-    --article-summary-color: #586069;
-
-    --article-title-color: #0366d6;
-    --article-title-hover-color: #005cc5;
-
-    --accordion-content-rail-color: #e1e4e8;
-    --accordion-content-hover-rail-color: #d1d5db;
-    --accordion-title-marker-color: #586069;
-    --accordion-title-hover-marker-color: #0366d6;
-
-    --footer-color: #586069;
-    --footer-link-hover-color: #0366d6;
 }
 
 [data-theme="light"] {
-    /* Theme design */
+    /* Primary UI Colors */
+    --color-primary: var(--hf-yellow);
+    --color-primary-light: var(--hf-yellow-light);
 
-    --color-primary: var(--nord07);
-    --color-primary-second: var(--nord00);
-    --color-info: var(--nord0A);
-    --color-success: var(--nord0E);
-    --color-warning: var(--nord0C);
-    --color-danger: var(--nord0B);
+    --color-info: var(--hf-blue);
+    --color-success: #4CAF50;
+    --color-warning: #FFB627;
+    --color-danger: #FF5454;
 
-    --color-text: var(--nord00);
-    --color-hover: var(--nord0D);
-    --color-shadow: var(--nord03);
+    --color-text: var(--hf-text);
+    --color-text-strong: var(--hf-text-strong);
 
-    --color-primary-h: var(--nord09);
-    --color-primary-s: var(--nord08);
-    --color-primary-l: var(--nord07);
-
-    --color-contrast-higher-h: var(--nord01);
-    --color-contrast-higher-l: var(--nord02);
-    --color-contrast-higher-s: var(--nord03);
-
-    --color-content: white;
-
-    --background: var(--nord06);
-    --background-content: var(--nord05);
-    --background-color: var(--nord04);
+    --background: var(--hf-bg);
+    --background-content: var(--hf-card-bg);
+    --background-color: var(--hf-bg);
 
     /* Components */
+    --chip-font: var(--hf-text-strong);
+    --chip-color: var(--hf-yellow-light);
 
-    --chip-font: var(--nord06);
-    --chip-color: var(--nord09);
+    --body-color: var(--hf-text);
+    --body-bg: var(--hf-bg);
 
-    --body-color: var(--background-color);
-    --body-bg: var(--background);
+    --header-title: var(--hf-text-strong);
+    --header-container: var(--hf-bg);
+    --header-title-preffix: var(--hf-purple);
 
-    --header-title: var(--color-shadow);
-    --header-container: var(--background);
-    --header-title-preffix: var(--color-primary-h);
+    --icons: var(--hf-text-light);
+    --icons-hover: var(--hf-blue);
 
-    --icons: var(--color-shadow);
-    --icons-hover: var(--color-hover);
+    --day-container: var(--hf-card-bg);
+    --date: var(--hf-purple);
 
-    --day-container: var(--background-content);
-    --date: var(--color-primary-l);
+    --summary: var(--hf-blue);
+    --summary-hover: var(--hf-purple);
 
-    --summary: var(--color-info);
-    --summary-hover: var(--color-success);
+    --details-open: var(--hf-card-bg);
+    --details-content: var(--hf-text);
+    --details-a: var(--hf-blue);
+    --details-a-hover: var(--hf-purple);
 
-    --details-open: var(--color-content);
-    --details-content: var(--color-text);
-    --details-a: var(--color-primary-h);
-    --details-a-hover: var(--color-hover);
+    --highlight-title: var(--hf-yellow);
+    --highlight-author: var(--hf-purple);
 
-    --highlight-title: var(--color-danger);
-    --highlight-author: var(--color-warning);
+    --article-summary-color: var(--hf-text-light);
+    --article-summary-hover-color: var(--hf-blue);
 
-    --article-summary-color: var(--color-text);
-    --article-summary-hover-color: var(--color-primary-s);
+    --article-title-color: var(--hf-purple);
+    --article-title-hover-color: var(--hf-yellow);
 
-    --article-title-color: var(--color-primary);
-    --article-title-hover-color: var(--color-success);
+    --accordion-content-rail-color: var(--hf-border);
+    --accordion-content-hover-rail-color: var(--hf-purple-light);
 
-    --accordion-content-rail-color: var(--color-warning);
-    --accordion-content-hover-rail-color: var(--color-warning);
-    --accordion-title-marker-color: var(--color-success);
-    --accordion-title-hover-marker-color: var(--color-success);
+    --accordion-title-marker-color: var(--hf-blue);
+    --accordion-title-hover-marker-color: var(--hf-purple);
 
-    --footer-color: var(--color-text);
-    --footer-link-hover-color: var(--color-hover);
+    --footer-color: var(--hf-text-light);
+    --footer-link-hover-color: var(--hf-blue);
 }
+
 
 html {
     font-size: var(--font-size-scaler);
