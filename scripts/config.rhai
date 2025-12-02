@@ -52,7 +52,7 @@ let conferences = [
     // CV
     "CVPR", "ECCV", "ICCV", "SIGGRAPH",
     // Robotics
-    "Transactions on Robotics", "International Journal of Robotics Research", "Robotics and Automation Letters"
+    "Transactions on Robotics", "International Journal of Robotics Research", "Robotics and Automation Letters",
     // ML
     "ICLR", "ICML", "NeurIPS", "NIPS",
 ];
