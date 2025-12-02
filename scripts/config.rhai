@@ -1,12 +1,11 @@
 let titles_type = ["Dataset", "Survey", "Review", "Overview"];
-let titles_model = [];
 let titles_method = [
     "Certifiable", "Self-Supervised", "Semi-Supervised", "Unsupervised", "Fusion", "Navigation", 
     "Detect", "Decision", "Calibration", "Reinforcement", "Relocalization", "loop", "global", "outlier", 
     "localization", "dynamic", "graph", "clique", "HD map", "reconstruction", "robot", 
     "Guassian", "road", "robust", "simulation", "simulator", "dataset", "Deformable", "closed-form", 
     "geometric", "benchmark", "evaluation", "prediction", "multi-view", "grasp", "field", "point cloud", "lidar", 
-    "trajectory", "trajectories", "cluster", "GPT", "LLM", "embodied", "pose"
+    "trajectory", "trajectories", "cluster", "GPT", "LLM", "embodied", "pose",
 
     "VLA", "VLN", "VLM", "LLM", "Foundation Model", "Generalist", "Open-vocabulary", 
     "Large Language Model", "Vision-Language", "Multimodal", "Transformer", 
@@ -41,7 +40,7 @@ let titles_task = [
     
     "Task Planning", "Motion Planning", "TAMP", "Long-horizon", "Path Planning", "localmotion",
 ];
-let titles =  titles_model + titles_method + titles_type;
+let titles =  titles_task + titles_method + titles_type;
 let authors_array = ["Shaojie Shen", "Luca Carlone", "Yoshua Bengio", "Frank Dellaert", "Wolfram Burgard", "Davide Scaramuzza", "Marc Pollefeys", "Andrew Davison", "Daniel Cremers", "Heng Yang", "Fei Gao", 
 "Tong Qin", "Wenchao Ding", "Fu Zhang", "Hesheng Wang", "Huan Yin", "Peng Yin", "Yue Wang", "Hang Zhao", "Xieyuanli Chen", "Boyu Zhou", "Timothy D. Barfoot", "Marc Pollefeys", "Kasra Khosoussi",
 "Fang Bai", "kaiming he", "Kevin Doherty", "shoudong huang", "Guoquan Huang", "Yue Pan", "Timothy D. Barfoot", "Jonathan P. How", "Guofeng Zhang", "Cyrill Stachniss", "Javier Civera", "Yulun Tian", "Jose Luis Blanco Claraco",
