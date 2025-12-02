@@ -1,6 +1,6 @@
-site_title = "MyArxiv"
+site_title = "robot papers"
 limit_days = 7
-cache_url = "https://mlnlp-world.github.io/MyArxiv/cache.json"
+cache_url = "https://liujy25.github.io/robot-papers/cache.json"
 
 [[sources]]
 limit = 150
