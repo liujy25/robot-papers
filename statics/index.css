@@ -25,47 +25,47 @@
     --font-size-m: 1.6rem;
     --font-size-s: 1.4rem;
 
-    /* Components */
-    --body-color: var(--nord06);
-    --body-bg: var(--nord00);
+    /* Components - GitHub Style */
+    --body-color: #24292e;
+    --body-bg: #ffffff;
 
-    --header-title: var(--nord06);
-    --header-container: var(--nord00);
-    --header-title-preffix: var(--nord0F);
+    --header-title: #24292e;
+    --header-container: #ffffff;
+    --header-title-preffix: #0366d6;
 
-    --chip-font: var(--nord08);
-    --chip-color: var(--nord0B);
+    --chip-font: #24292e;
+    --chip-color: #f1f3f5;
 
-    --icons: var(--nord06);
-    --icons-hover: var(--nord0F);
+    --icons: #586069;
+    --icons-hover: #0366d6;
 
-    --day-container: var(--nord01);
-    --date: var(--nord09);
+    --day-container: #ffffff;
+    --date: #24292e;
 
-    --summary: var(--nord0E);
-    --summary-hover: var(--nord0F);
+    --summary: #0366d6;
+    --summary-hover: #005cc5;
 
-    --details-open: var(--nord02);
-    --details-content: var(--nord05);
-    --details-a: var(--nord07);
-    --details-a-hover: var(--nord0F);
+    --details-open: #f6f8fa;
+    --details-content: #24292e;
+    --details-a: #0366d6;
+    --details-a-hover: #005cc5;
 
-    --highlight-title: var(--nord0B);
-    --highlight-author: var(--nord0B);
+    --highlight-title: #d73a49;
+    --highlight-author: #e36209;
 
-    --article-summary-hover-color: var(--nord0D);
-    --article-summary-color: var(--nord04);
+    --article-summary-hover-color: #0366d6;
+    --article-summary-color: #586069;
 
-    --article-title-color: var(--nord05);
-    --article-title-hover-color: var(--nord0E);
+    --article-title-color: #0366d6;
+    --article-title-hover-color: #005cc5;
 
-    --accordion-content-rail-color: var(--nord01);
-    --accordion-content-hover-rail-color: var(--nord0D);
-    --accordion-title-marker-color: var(--nord01);
-    --accordion-title-hover-marker-color: var(--nord0E);
+    --accordion-content-rail-color: #e1e4e8;
+    --accordion-content-hover-rail-color: #d1d5db;
+    --accordion-title-marker-color: #586069;
+    --accordion-title-hover-marker-color: #0366d6;
 
-    --footer-color: var(--nord04);
-    --footer-link-hover-color: var(--nord0D);
+    --footer-color: #586069;
+    --footer-link-hover-color: #0366d6;
 }
 
 [data-theme="light"] {
@@ -193,7 +193,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     margin-bottom: 8px;
-    border-radius: 10px;
+    border-radius: 6px;
+    border: 1px solid #e1e4e8;
 }
 
 .date {
@@ -219,17 +220,18 @@ summary:hover {
 }
 
 details {
-    --border-color: transparent;
+    --border-color: #e1e4e8;
 
     padding: 2px 4px;
     font-size: 20px;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 details[open] {
     background-color: var(--details-open);
     margin-bottom: 8px;
+    border-color: #d1d5db;
 }
 
 .details-content {
@@ -348,8 +350,9 @@ footer {
     align-items: center;
     color: var(--chip-font);
     background: var(--chip-color);
-    border-radius: 5rem;
+    border-radius: 3px;
     display: inline-flex;
     padding: .2rem .4rem;
     vertical-align: middle;
+    border: 1px solid #e1e4e8;
 }
