@@ -8,30 +8,6 @@ document.onkeydown = function (e) {
     }
 };
 
-/* Switch Theme */
-const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'light');
-        document.getElementById("theme-icon").className = "ri-sun-line";
-        localStorage.setItem('theme', 'light'); //add this
-    } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById("theme-icon").className = "ri-moon-line";
-        localStorage.setItem('theme', 'dark'); //add this
-    }
-}
-
-toggleSwitch.addEventListener('change', switchTheme, false);
-const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme === 'light') {
-        toggleSwitch.checked = true;
-    }
-}
-
 const timestamp = document.getElementById("build-timestamp");
 const timestamp_local = new Date(timestamp.getAttribute("datetime")).toLocaleString();
 
