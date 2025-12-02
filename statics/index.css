@@ -26,46 +26,26 @@
     --font-size-scaler: 62.5%;
     --font-size-m: 1.6rem;
     --font-size-s: 1.4rem;
-}
 
-/* Light theme mapping */
-[data-theme="light"] {
-    --color-primary: var(--hf-yellow);
-    --color-primary-second: var(--hf-purple);
-    --color-info: var(--hf-blue);
-    --color-success: #22C55E;
-    --color-warning: #FFB627;
-    --color-danger: #F97373;
-
-    --color-text: var(--hf-text);
-    --color-hover: var(--hf-purple);
-    --color-shadow: var(--hf-shadow);
-
-    --color-content: var(--hf-card-bg);
-
-    --background: #FFFFFF;        /* 页面背景白色 */
-    --background-content: #FFFFFF;
-    --background-color: #FFFFFF;
-    --body-bg: #FFFFFF;
+    /* 组件用的直接变量（不再分 theme） */
+    --body-bg: var(--hf-bg);
+    --body-color: var(--hf-text);
 
     --chip-font: var(--hf-text-strong);
     --chip-color: var(--hf-yellow-light);
 
     --header-title: var(--hf-text-strong);
-    --header-container: transparent;
     --header-title-preffix: var(--hf-purple);
 
     --icons: var(--hf-text-light);
     --icons-hover: var(--hf-blue);
 
-    --day-container: var(--hf-card-bg);    /* 日期卡片 */
-
+    --day-container: var(--hf-card-bg);
     --date: var(--hf-purple);
 
     --summary: var(--hf-blue);
     --summary-hover: var(--hf-purple);
 
-    --details-open: var(--hf-card-bg);
     --details-content: var(--hf-text);
     --details-a: var(--hf-blue);
     --details-a-hover: var(--hf-purple);
@@ -84,6 +64,8 @@
 
     --footer-color: var(--hf-text-light);
     --footer-link-hover-color: var(--hf-blue);
+
+    --color-shadow: var(--hf-shadow);
 }
 
 /* Base layout */
@@ -221,20 +203,19 @@ footer,
     font-size: var(--font-size-m);
 }
 
-/* Title text (黑色标题) */
+/* 标题：黑色，hover 蓝色 */
 .article-expander-title,
 .article-summary-link,
 .article-summary-box-inner a {
-    color: var(--article-title-color) !important; /* 默认黑色 */
+    color: var(--article-title-color);
     text-decoration: none;
     transition: color 0.18s ease-out;
 }
 
-/* Hover: 蓝色 */
 .article-expander-title:hover,
 .article-summary-link:hover,
 .article-summary-box-inner a:hover {
-    color: var(--article-title-hover-color) !important;
+    color: var(--article-title-hover-color);
 }
 
 .article-authors {
@@ -252,4 +233,9 @@ footer,
     display: inline-flex;
     padding: 0.2rem 0.7rem;
     border: 1px solid var(--hf-border);
+}
+
+/* 不再需要主题切换：如果 HTML 里还有这个元素，直接隐藏 */
+.theme-switch {
+    display: none;
 }
