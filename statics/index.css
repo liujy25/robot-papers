@@ -38,7 +38,7 @@
     --icons: #586069;
     --icons-hover: #0366d6;
 
-    --day-container: #ffffff;
+    --day-container: #f6f8fa;
     --date: #24292e;
 
     --summary: #0366d6;
@@ -199,7 +199,7 @@ body {
 .date {
     font-size: 24px;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 16px 0;
     color: var(--date);
 }
 
@@ -210,6 +210,7 @@ p {
 summary {
     font-weight: 600;
     color: var(--summary);
+    font-size: 16px;
 }
 
 summary:hover {
@@ -219,18 +220,18 @@ summary:hover {
 }
 
 details {
-    --border-color: #e1e4e8;
+    --border-color: transparent;
 
     padding: 2px 4px;
     font-size: 20px;
-    border: 1px solid var(--border-color);
+    border: none;
     border-radius: 6px;
 }
 
 details[open] {
-    background-color: var(--details-open);
+    background-color: transparent;
     margin-bottom: 8px;
-    border-color: #d1d5db;
+    border: none;
 }
 
 .details-content {

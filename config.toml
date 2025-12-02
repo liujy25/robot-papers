@@ -1,4 +1,4 @@
-site_title = "robot papers"
+site_title = "Robot Papers"
 limit_days = 7
 cache_url = "https://liujy25.github.io/robot-papers/cache.json"
 
