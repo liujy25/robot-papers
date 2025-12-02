@@ -50,8 +50,9 @@
     --details-a: var(--hf-blue);
     --details-a-hover: var(--hf-purple);
 
-    --highlight-title: var(--hf-yellow);
-    --highlight-author: var(--hf-purple);
+    /* Highlights */
+    --highlight-title: var(--hf-blue-light);   /* 浅蓝色关键词高亮 */
+    --highlight-author: var(--hf-purple);      /* 作者保持紫色高亮 */
 
     --article-summary-color: var(--hf-text);
     --article-summary-hover-color: var(--hf-blue);
@@ -214,7 +215,7 @@ footer,
     color: var(--article-title-color);
     text-decoration: none;
     transition: color 0.18s ease-out;
-    font-size: 2.0rem;
+    font-size: 1.8rem;
     font-weight: 600;
     line-height: 1.4;
 }
@@ -245,4 +246,15 @@ footer,
 /* 不再需要主题切换：如果 HTML 里还有这个元素，直接隐藏 */
 .theme-switch {
     display: none;
+}
+
+/* Title & author highlights coming from Rhai scripts */
+.highlight-title {
+    color: var(--highlight-title);
+    font-weight: 700;
+}
+
+.highlight-author {
+    color: var(--highlight-author);
+    font-weight: 600;
 }
