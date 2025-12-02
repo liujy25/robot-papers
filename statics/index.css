@@ -89,8 +89,8 @@
     --article-summary-color: var(--hf-text-light);
     --article-summary-hover-color: var(--hf-blue);
 
-    --article-title-color: var(--hf-purple);
-    --article-title-hover-color: var(--hf-yellow);
+    --article-title-color: #222226;     
+    --article-title-hover-color: #000000;
 
     --accordion-content-rail-color: var(--hf-border);
     --accordion-content-hover-rail-color: var(--hf-purple-light);
