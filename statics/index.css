@@ -9,8 +9,8 @@
     --hf-blue: #3F7FFF;
     --hf-blue-light: #D9E4FF;
 
-    --hf-bg: #F7F7F8;
-    --hf-card-bg: #FFFFFF;
+    --hf-bg: #FFFFFF;             /* 页面背景固定白 */
+    --hf-card-bg: #F7F7F8;        /* 大卡片背景 */
     --hf-border: #E6E6E8;
 
     --hf-text-strong: #222226;
@@ -28,9 +28,8 @@
     --font-size-s: 1.4rem;
 }
 
-/* Light theme mapping (colors used later in components) */
+/* Light theme mapping */
 [data-theme="light"] {
-    /* Generic theme tokens (如果以后你有别的 CSS 也能复用这些) */
     --color-primary: var(--hf-yellow);
     --color-primary-second: var(--hf-purple);
     --color-info: var(--hf-blue);
@@ -42,28 +41,15 @@
     --color-hover: var(--hf-purple);
     --color-shadow: var(--hf-shadow);
 
-    /* 用作一些旧变量的兼容 */
-    --color-primary-h: var(--hf-purple);
-    --color-primary-s: var(--hf-blue);
-    --color-primary-l: var(--hf-yellow);
-
-    --color-contrast-higher-h: var(--hf-text-strong);
-    --color-contrast-higher-l: var(--hf-text);
-    --color-contrast-higher-s: var(--hf-text-light);
-
     --color-content: var(--hf-card-bg);
 
-    --background: var(--hf-bg);
-    --background-content: var(--hf-card-bg);
-    --background-color: var(--hf-bg);
-
-    /* Components */
+    --background: #FFFFFF;        /* 页面背景白色 */
+    --background-content: #FFFFFF;
+    --background-color: #FFFFFF;
+    --body-bg: #FFFFFF;
 
     --chip-font: var(--hf-text-strong);
     --chip-color: var(--hf-yellow-light);
-
-    --body-color: var(--hf-text);
-    --body-bg: var(--hf-bg);
 
     --header-title: var(--hf-text-strong);
     --header-container: transparent;
@@ -72,7 +58,8 @@
     --icons: var(--hf-text-light);
     --icons-hover: var(--hf-blue);
 
-    --day-container: var(--hf-card-bg);
+    --day-container: var(--hf-card-bg);    /* 日期卡片 */
+
     --date: var(--hf-purple);
 
     --summary: var(--hf-blue);
@@ -86,21 +73,20 @@
     --highlight-title: var(--hf-yellow);
     --highlight-author: var(--hf-purple);
 
-    --article-summary-color: var(--hf-text-light);
+    --article-summary-color: var(--hf-text);
     --article-summary-hover-color: var(--hf-blue);
 
-    --article-title-color: #222226;     
-    --article-title-hover-color: #000000;
+    --article-title-color: #222226;          /* 标题统一黑色 */
+    --article-title-hover-color: var(--hf-blue);
 
     --accordion-content-rail-color: var(--hf-border);
     --accordion-content-hover-rail-color: var(--hf-purple-light);
-    --accordion-title-marker-color: var(--hf-blue);
-    --accordion-title-hover-marker-color: var(--hf-purple);
 
     --footer-color: var(--hf-text-light);
     --footer-link-hover-color: var(--hf-blue);
 }
 
+/* Base layout */
 html {
     font-size: var(--font-size-scaler);
 }
@@ -116,7 +102,6 @@ body {
 }
 
 /* Header */
-
 .header-container {
     width: 90%;
     max-width: 1200px;
@@ -149,33 +134,23 @@ body {
 .icons a {
     color: var(--icons);
     text-decoration: none;
-    transition: color 0.18s ease-out, transform 0.18s ease-out;
+    transition: color 0.18s ease-out;
 }
 
 .icons a:hover {
     color: var(--icons-hover);
-    transform: translateY(-1px);
 }
 
-/* Day container = 每一天的卡片整体 */
-
+/* Day card (2025-12-01) */
 .day-container {
-    padding: 18px 18px 18px 18px;
+    padding: 18px;
     background: var(--day-container);
     width: 90%;
     max-width: 1200px;
-    margin: 0 auto 12px auto;
+    margin: 0 auto 16px auto;
     border-radius: 18px;
     border: 1px solid var(--hf-border);
-    box-shadow: 0 16px 40px var(--color-shadow);
-    transition: box-shadow 0.22s ease-out, transform 0.22s ease-out,
-        border-color 0.22s ease-out;
-}
-
-.day-container:hover {
-    transform: translateY(-2px);
-    border-color: var(--hf-purple-light);
-    box-shadow: 0 20px 50px var(--color-shadow);
+    box-shadow: 0 10px 30px var(--color-shadow);
 }
 
 .date {
@@ -186,70 +161,30 @@ body {
 }
 
 /* Typography */
-
 p {
     margin: 0;
 }
 
+/* Summary collapsible */
 summary {
     font-weight: 600;
     color: var(--summary);
     font-size: 1.6rem;
     list-style: none;
-    position: relative;
 }
 
 summary::-webkit-details-marker {
     display: none;
 }
 
-summary::before {
-    content: "›";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    margin-right: 6px;
-    border-radius: 999px;
-    background: var(--hf-purple-light);
-    color: var(--hf-purple);
-    font-size: 1.2rem;
-    transform: rotate(90deg);
-    transition: transform 0.2s ease-out, background-color 0.2s ease-out,
-        color 0.2s ease-out;
-}
-
-details[open] summary::before {
-    transform: rotate(270deg);
-    background: var(--hf-purple);
-    color: #fff;
-}
-
 summary:hover {
     cursor: pointer;
     color: var(--summary-hover);
-    text-decoration: none;
 }
 
-/* Details / accordion */
-
-details {
-    --border-color: transparent;
-    padding: 2px 4px;
-    font-size: 2rem;
-    border: none;
-    border-radius: 10px;
-}
-
-details[open] {
-    background-color: transparent;
-    margin-bottom: 8px;
-    border: none;
-}
-
+/* Details */
 .details-content {
-    padding: 12px 3px 4px 3px;
+    padding: 12px 3px;
     gap: 16px;
     color: var(--details-content);
 }
@@ -257,84 +192,27 @@ details[open] {
 details a {
     color: var(--details-a);
     text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: color 0.18s ease-out, border-color 0.18s ease-out;
 }
 
 details a:hover {
     color: var(--details-a-hover);
-    border-color: rgba(108, 99, 255, 0.4);
 }
 
-/* Footer / description */
-
-footer {
-    margin: 12px auto 16px auto;
-    color: var(--footer-color);
-    font-size: var(--font-size-s);
-    display: flex;
-    padding: 0 16px;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 90%;
-}
-
+/* Footer text */
+footer,
 .description {
-    margin: 0 auto 16px auto;
+    margin: 8px auto;
     color: var(--footer-color);
     font-size: var(--font-size-s);
-    display: flex;
-    padding: 0 16px;
     text-align: center;
-    justify-content: center;
 }
 
-/* Highlights */
-
-.highlight-author {
-    color: var(--highlight-author);
-    font-weight: 600;
-}
-
-.highlight-title {
-    color: var(--highlight-title);
-    font-weight: 600;
-}
-
-/* Channel description */
-
-.channel-description {
-    text-align: center;
-    font-size: 1.3rem;
-    color: var(--hf-text-light);
-}
-
-/* Article summary / cards inside一天 */
-
-.article-summary-link {
-    color: var(--article-summary-color);
-    font-size: var(--font-size-s);
-    text-decoration: none;
-}
-
-.article-summary-link:hover {
-    color: var(--article-summary-hover-color);
-    --accordion-content-rail-color: var(--accordion-content-hover-rail-color);
-}
-
+/* Article items (single paper entries) */
 .article-summary-box-outer {
-    display: block;
-    padding: 4px 0;          /* 上下留点间距就好 */
-    border-radius: 0;
+    padding: 6px 0;
     background: transparent;
+    border-radius: 0;
     box-shadow: none;
-    transition: color 0.18s ease-out;
-}
-
-.article-summary-box-outer:hover {
-    background: transparent; /* 不要块状高亮 */
-    box-shadow: none;
-    transform: none;
 }
 
 .article-summary-box-inner {
@@ -343,59 +221,28 @@ footer {
     font-size: var(--font-size-m);
 }
 
-/* 文章展开整体块 */
+/* Title text (黑色标题) */
+.article-expander-title,
+.article-summary-link,
+.article-summary-box-inner a {
+    color: var(--article-title-color) !important; /* 默认黑色 */
+    text-decoration: none;
+    transition: color 0.18s ease-out;
+}
 
-.article-expander {
-    padding: 10px 4px;
-    border-radius: 8px;
+/* Hover: 蓝色 */
+.article-expander-title:hover,
+.article-summary-link:hover,
+.article-summary-box-inner a:hover {
+    color: var(--article-title-hover-color) !important;
 }
 
 .article-authors {
     font-size: var(--font-size-m);
-    padding: 0.25em 1em;
     color: var(--hf-text-light);
 }
 
-.article-authors a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* summary里标题 */
-
-.article-expander-title {
-    font-size: var(--font-size-m);
-    font-weight: 600;
-    color: var(--article-title-color);
-    transition: color 0.18s ease-out;
-}
-
-.article-expander-title:hover {
-    cursor: pointer;
-    color: var(--article-title-hover-color);
-}
-
-.article-expander-title::marker {
-    color: var(--accordion-title-marker-color);
-}
-
-.article-expander-title:hover::marker {
-    color: var(--accordion-title-hover-marker-color);
-}
-
-/* theme switcher */
-
-.theme-switch {
-    display: inline-block;
-    position: relative;
-}
-
-.theme-switch input {
-    display: none;
-}
-
-/* chip 标签，像 HuggingFace 上面的小 tag */
-
+/* Chip tags */
 .chip {
     font-size: 0.9em;
     align-items: center;
@@ -404,8 +251,5 @@ footer {
     border-radius: 999px;
     display: inline-flex;
     padding: 0.2rem 0.7rem;
-    vertical-align: middle;
     border: 1px solid var(--hf-border);
-    gap: 4px;
-    line-height: 1.4;
 }
