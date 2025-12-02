@@ -190,6 +190,10 @@ footer,
 }
 
 /* Article items (single paper entries) */
+.article-expander {
+    margin-bottom: 12px;
+}
+
 .article-summary-box-outer {
     padding: 6px 0;
     background: transparent;
@@ -210,6 +214,9 @@ footer,
     color: var(--article-title-color);
     text-decoration: none;
     transition: color 0.18s ease-out;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.4;
 }
 
 .article-expander-title:hover,
