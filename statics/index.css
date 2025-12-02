@@ -324,21 +324,22 @@ footer {
 
 .article-summary-box-outer {
     display: block;
-    padding: 6px 10px 10px 6px;
-    border-radius: 12px;
-    transition: background-color 0.18s ease-out, transform 0.18s ease-out,
-        box-shadow 0.18s ease-out;
+    padding: 4px 0;          /* 上下留点间距就好 */
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: color 0.18s ease-out;
 }
 
 .article-summary-box-outer:hover {
-    background: #f5f4ff;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 30px var(--color-shadow);
+    background: transparent; /* 不要块状高亮 */
+    box-shadow: none;
+    transform: none;
 }
 
 .article-summary-box-inner {
-    padding-left: 10px;
-    border-left: 2px solid var(--accordion-content-rail-color);
+    padding-left: 0;
+    border-left: none;
     font-size: var(--font-size-m);
 }
 
