@@ -13,7 +13,7 @@ let authors = authors.map(|v|authors_rg.is_match(v));
 let title = if true in authors {
     "<span class=\"highlight-title\">★</span> " + title
 } else {
-    "☆ " + title
+    title
 };
 
 title

@@ -41,10 +41,12 @@ let titles_task = [
     "Task Planning", "Motion Planning", "TAMP", "Long-horizon", "Path Planning", "localmotion",
 ];
 let titles =  titles_task + titles_method + titles_type;
-let authors_array = ["Shaojie Shen", "Luca Carlone", "Yoshua Bengio", "Frank Dellaert", "Wolfram Burgard", "Davide Scaramuzza", "Marc Pollefeys", "Andrew Davison", "Daniel Cremers", "Heng Yang", "Fei Gao", 
-"Tong Qin", "Wenchao Ding", "Fu Zhang", "Hesheng Wang", "Huan Yin", "Peng Yin", "Yue Wang", "Hang Zhao", "Xieyuanli Chen", "Boyu Zhou", "Timothy D. Barfoot", "Marc Pollefeys", "Kasra Khosoussi",
-"Fang Bai", "kaiming he", "Kevin Doherty", "shoudong huang", "Guoquan Huang", "Yue Pan", "Timothy D. Barfoot", "Jonathan P. How", "Guofeng Zhang", "Cyrill Stachniss", "Javier Civera", "Yulun Tian", "Jose Luis Blanco Claraco",
-"sida peng", "cewu Lu", "feifei li", "li feifei"];
+let authors_array = ["Fei Gao", "Wenchao Ding", "Fu Zhang", "Hang Zhao", "Boyu Zhou",
+"qi wu", "cewu Lu", "feifei li", "li feifei", 
+"Ye shi", "Jingya wang", "jiayuan gu", "lan xu",
+"hao dong", "he wang", 
+"jie gu", "jingmin chen", "can li", "yucheng xu", 
+"Bernadette Bucher", "Naoki Yokoyama"];
 
 let conferences = [
     // AI
