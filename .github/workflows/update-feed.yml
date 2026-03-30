@@ -51,11 +51,20 @@ jobs:
           chmod +x arxivfeed
           echo "ArxivFeed ready"
       - name: Build rss
+        env:
+          RUST_LOG: debug
         run: |
           echo "Running ArxivFeed..."
-          ./arxivfeed
+          ./arxivfeed 2>&1 | tee arxivfeed.log
           echo "Build completed"
-          ls -la target/
+          ls -la target/ || true
+
+      - name: Upload debug log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: arxivfeed-log
+          path: arxivfeed.log
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
