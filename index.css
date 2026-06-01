@@ -1,0 +1,260 @@
+:root {
+    /* HuggingFace-inspired Color Palette */
+    --hf-yellow: #FFB627;
+    --hf-yellow-light: #FFE6B0;
+
+    --hf-purple: #6C63FF;
+    --hf-purple-light: #E7E5FF;
+
+    --hf-blue: #3F7FFF;
+    --hf-blue-light: #D9E4FF;
+
+    --hf-bg: #FFFFFF;             /* 页面背景固定白 */
+    --hf-card-bg: #F7F7F8;        /* 大卡片背景 */
+    --hf-border: #E6E6E8;
+
+    --hf-text-strong: #1F2937;      /* 普通文字/标题：深灰蓝 */
+    --hf-text: #1F2937;
+    --hf-text-light: #6B6B6E;
+
+    --hf-shadow: rgba(15, 23, 42, 0.06);
+
+    /* Typography */
+    --font-family-default: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+    --font-size-scaler: 62.5%;
+    --font-size-m: 1.6rem;
+    --font-size-s: 1.4rem;
+
+    /* 组件用的直接变量（不再分 theme） */
+    --body-bg: var(--hf-bg);
+    --body-color: var(--hf-text);
+
+    --chip-font: var(--hf-text-strong);
+    --chip-color: var(--hf-yellow-light);
+
+    --header-title: var(--hf-text-strong);
+    --header-title-preffix: var(--hf-purple);
+
+    --icons: var(--hf-text-light);
+    --icons-hover: var(--hf-blue);
+
+    --day-container: var(--hf-card-bg);
+    --date: var(--hf-purple);
+
+    --summary: var(--hf-blue);
+    --summary-hover: var(--hf-purple);
+
+    --details-content: var(--hf-text);
+    --details-a: var(--hf-blue);
+    --details-a-hover: var(--hf-purple);
+
+    /* Highlights */
+    --highlight-title: #0284C7;                /* 高亮关键词：亮蓝 */
+    --highlight-author: var(--hf-purple);      /* 作者保持紫色高亮 */
+
+    --article-summary-color: var(--hf-text);   /* 摘要文字：跟普通文字一致 */
+    --article-summary-hover-color: var(--hf-blue);
+
+    --article-title-color: var(--hf-text-strong);  /* 论文标题：深灰蓝 */
+    --article-title-hover-color: var(--hf-blue);
+
+    --accordion-content-rail-color: var(--hf-border);
+    --accordion-content-hover-rail-color: var(--hf-purple-light);
+
+    --footer-color: var(--hf-text-light);
+    --footer-link-hover-color: var(--hf-blue);
+
+    --color-shadow: var(--hf-shadow);
+}
+
+/* Base layout */
+html {
+    font-size: var(--font-size-scaler);
+}
+
+body {
+    background-color: var(--body-bg);
+    font-family: var(--font-family-default);
+    color: var(--body-color);
+    margin: 0;
+    padding-top: 16px;
+    display: grid;
+    min-height: 100vh;
+}
+
+/* Header */
+.header-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 8px auto;
+    padding-bottom: 8px;
+}
+
+.header-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--header-title);
+    margin: 0;
+    padding-bottom: 14px;
+}
+
+.header-title-preffix {
+    color: var(--header-title-preffix);
+}
+
+.icons {
+    color: var(--icons);
+    padding-bottom: 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.icons a {
+    color: var(--icons);
+    text-decoration: none;
+    transition: color 0.18s ease-out;
+}
+
+.icons a:hover {
+    color: var(--icons-hover);
+}
+
+/* Day card (2025-12-01) */
+.day-container {
+    padding: 18px;
+    background: var(--day-container);
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 16px auto;
+    border-radius: 18px;
+    border: 1px solid var(--hf-border);
+    box-shadow: 0 10px 30px var(--color-shadow);
+}
+
+.date {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--date);
+}
+
+/* Typography */
+p {
+    margin: 0;
+}
+
+/* Summary collapsible */
+summary {
+    font-weight: 600;
+    color: var(--summary);
+    font-size: 1.6rem;
+    list-style: none;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary:hover {
+    cursor: pointer;
+    color: var(--summary-hover);
+}
+
+/* Details */
+.details-content {
+    padding: 12px 3px;
+    gap: 16px;
+    color: var(--details-content);
+}
+
+details a {
+    color: var(--details-a);
+    text-decoration: none;
+}
+
+details a:hover {
+    color: var(--details-a-hover);
+}
+
+/* Footer text */
+footer,
+.description {
+    margin: 8px auto;
+    color: var(--footer-color);
+    font-size: var(--font-size-s);
+    text-align: center;
+}
+
+/* Article items (single paper entries) */
+.article-expander {
+    margin-bottom: 12px;
+}
+
+.article-summary-box-outer {
+    padding: 6px 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.article-summary-box-inner {
+    padding-left: 0;
+    border-left: none;
+    font-size: var(--font-size-m);
+}
+
+/* 标题：黑色，hover 蓝色 */
+.article-expander-title,
+.article-summary-link,
+.article-summary-box-inner a {
+    color: var(--article-title-color);
+    text-decoration: none;
+    transition: color 0.18s ease-out;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.article-expander-title:hover,
+.article-summary-link:hover,
+.article-summary-box-inner a:hover {
+    color: var(--article-title-hover-color);
+}
+
+.article-authors {
+    font-size: var(--font-size-m);
+    color: var(--hf-text-light);
+}
+
+/* Chip tags */
+.chip {
+    font-size: 0.9em;
+    align-items: center;
+    color: var(--chip-font);
+    background: var(--chip-color);
+    border-radius: 999px;
+    display: inline-flex;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--hf-border);
+}
+
+/* 不再需要主题切换：如果 HTML 里还有这个元素，直接隐藏 */
+.theme-switch {
+    display: none;
+}
+
+/* Title & author highlights coming from Rhai scripts */
+.highlight-title {
+    color: var(--highlight-title);
+    font-weight: 700;
+}
+
+.highlight-author {
+    color: var(--highlight-author);
+    font-weight: 600;
+}
