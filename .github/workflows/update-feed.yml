@@ -3,69 +3,53 @@ name: Update
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
+  pull_request:
+    branches: [main]
   schedule:
-    # Adjust refresh schedule here. By default, it runs once per day.
-    # Syntax reference: https://docs.github.com/en/actions/reference/events-that-trigger-workflows#schedule
-    # Recommended tool: https://crontab.guru/
-    - cron: "30 0 * * *"
+    # UTC: 02:17, 08:17, 14:17, 20:17 (Beijing: 10:17, 16:17, 22:17, 04:17).
+    # GitHub may delay scheduled jobs. Avoid the top of the hour.
+    - cron: '17 2,8,14,20 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: feed-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    timeout-minutes: 25
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Download ArxivFeed
-        env:
-          GITHUB_PAT: ${{ github.token }}
-          REPO: "NotCraft/ArxivFeed"
-          VERSION: "latest"
-          MATCH: "arxivfeed-.+-x86_64-unknown-linux-musl.tar.gz$"
-          RENAME: "arxivfeed.tgz"
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Test feed parsing, recovery and rendering
+        run: |
+          python -m unittest discover -s tests -v
+          node --check statics/index.js
+      - name: Build feed
+        if: github.event_name != 'pull_request'
         shell: bash
         run: |
-          echo "Fetching latest release info..."
-          curl -sL --fail \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: Bearer ${GITHUB_PAT}" \
-              "https://api.github.com/repos/${REPO}/releases/${VERSION}" \
-              | jq -r ".assets | .[] | select(.name | test(\"${MATCH}\")) | .url" \
-              | tee asset.url
-
-          if [ ! -s asset.url ]; then
-            echo "Error: Could not find matching asset"
-            exit 1
-          fi
-
-          echo "Downloading ArxivFeed..."
-          curl -sL --fail \
-            -H "Accept: application/octet-stream" \
-            -H "Authorization: Bearer ${GITHUB_PAT}" \
-              -o "${RENAME}" \
-              "$(cat asset.url)"
-
-          echo "Extracting ArxivFeed..."
-          tar -zxvf arxivfeed.tgz --strip-components 1 $(tar tf arxivfeed.tgz | grep /arxivfeed)
-          chmod +x arxivfeed
-          echo "ArxivFeed ready"
-      - name: Build rss
-        env:
-          RUST_LOG: debug
-        run: |
-          echo "Running ArxivFeed..."
-          ./arxivfeed 2>&1 | tee arxivfeed.log
-          echo "Build completed"
-          ls -la target/ || true
-
-      - name: Upload debug log
-        if: always()
-        uses: actions/upload-artifact@v4
+          set -euo pipefail
+          python -u scripts/build.py 2>&1 | tee build.log
+          test -s target/index.html
+          test -s target/cache.json
+          test -s target/status.json
+      - name: Upload build log
+        if: always() && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v7
         with:
-          name: arxivfeed-log
-          path: arxivfeed.log
+          name: feed-build-log
+          path: build.log
       - name: Deploy to GitHub Pages
+        if: github.event_name != 'pull_request'
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
