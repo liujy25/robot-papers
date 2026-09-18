@@ -74,11 +74,13 @@ fetch('status.json', {cache:'no-cache'}).then(response => {
     const label = document.createElement('span'); label.textContent = source.category;
     const value = document.createElement('span');
     const old = !source.last_success || Date.now() - new Date(source.last_success).getTime() > 48 * 3600000;
-    const stale = source.state !== 'ok' || old;
-    value.textContent = stale ? '缓存 · 待同步' : '已同步';
+    const fallback = source.state === 'rss';
+    const stale = !['ok', 'rss'].includes(source.state) || old;
+    value.textContent = stale ? '缓存 · 待同步' : fallback ? '公告已同步' : '已同步';
     if (stale) value.className = 'stale';
     row.title = source.last_success ? `${name} 最近成功同步：${new Date(source.last_success).toLocaleString('zh-CN')}` : `${name} 暂无成功同步记录`;
     row.append(label, value); panel.append(row);
+    if (fallback && !stale && !status.preview) warnings.push(`${name} 使用官方每日公告，历史缺口将在 API 恢复后补齐。`);
     if (stale && !status.preview) warnings.push(`${name} 正在显示缓存数据。`);
   }
   showWarnings();

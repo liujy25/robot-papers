@@ -1,0 +1,34 @@
+name: Feed recovery verification
+on:
+  push:
+    branches: [fix/arxiv-request-recovery]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tests -v
+      - name: Build against live arXiv from the production runner
+        run: python -u scripts/build.py
+      - name: Verify all official fallback feeds independently
+        run: |
+          python -u - <<'PY'
+          import sys, tomllib
+          from datetime import timedelta
+          sys.path.insert(0, 'scripts')
+          import build
+          config = tomllib.loads(open('config.toml').read())
+          for source in config['sources']:
+              papers = build.fetch_daily(source, build.now() - timedelta(days=14))
+              print(source['title'], len(papers), 'official announcements', flush=True)
+          PY
+      - uses: actions/upload-artifact@v7
+        with:
+          name: verified-feed
+          path: target/
