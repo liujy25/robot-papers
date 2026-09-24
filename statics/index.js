@@ -69,6 +69,7 @@ fetch('status.json', {cache:'no-cache'}).then(response => {
 }).then(status => {
   const panel = document.querySelector('#source-status'); panel.replaceChildren();
   if (status.preview) warnings.push('当前为缓存预览，尚未执行实时同步。');
+  let hasStaleSource = false;
   for (const [name, source] of Object.entries(status.sources)) {
     const row = document.createElement('div'); row.className = 'source-row';
     const label = document.createElement('span'); label.textContent = source.category;
@@ -80,9 +81,10 @@ fetch('status.json', {cache:'no-cache'}).then(response => {
     if (stale) value.className = 'stale';
     row.title = source.last_success ? `${name} 最近成功同步：${new Date(source.last_success).toLocaleString('zh-CN')}` : `${name} 暂无成功同步记录`;
     row.append(label, value); panel.append(row);
-    if (fallback && !stale && !status.preview) warnings.push(`${name} 使用官方每日公告，历史缺口将在 API 恢复后补齐。`);
-    if (stale && !status.preview) warnings.push(`${name} 正在显示缓存数据。`);
+    if (fallback) row.title += '；使用官方每日公告，历史缺口将在 API 恢复后补齐。';
+    if (stale && !status.preview) hasStaleSource = true;
   }
+  if (hasStaleSource) warnings.push('部分来源暂未同步，详情见数据同步状态。');
   showWarnings();
 }).catch(() => {
   document.querySelector('#source-status').textContent = '同步记录暂不可用';
