@@ -14,10 +14,10 @@
 </head>
 <body>
 <a class="skip" href="#papers">跳到论文列表</a>
-<header class="topbar"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">r<span>p</span></span>Robot Papers<span class="edition">RESEARCH DIGEST</span></a><a class="github" href="https://github.com/liujy25/robot-papers">GitHub ↗</a></header>
+<header class="topbar"><a class="brand" href="./"><img class="brand-icon" src="favicon.ico" width="32" height="32" alt="">Robot Papers</a><a class="github" href="https://github.com/liujy25/robot-papers">GitHub ↗</a></header>
 <div class="layout">
   <aside class="sidebar">
-    <div class="sidebar-label">研究领域 <span>EXPLORE</span></div>
+    <div class="sidebar-label">研究领域</div>
     <nav id="categories" aria-label="研究领域">
       <button data-category="all" aria-pressed="true"><span>全部论文</span><span class="category-count"></span></button>
       <button data-category="Robotics" aria-pressed="false"><span>机器人 <small>cs.RO</small></span><span class="category-count"></span></button>
@@ -25,19 +25,17 @@
       <button data-category="Artificial Intelligence" aria-pressed="false"><span>人工智能 <small>cs.AI</small></span><span class="category-count"></span></button>
       <button data-category="Graphics" aria-pressed="false"><span>图形学 <small>cs.GR</small></span><span class="category-count"></span></button>
     </nav>
-    <div class="sidebar-note"><span class="small-label">YOUR RESEARCH RADAR</span><p>让好研究，<br>更早被看见。</p><span>追踪 arXiv 的最新论文与修订。<br>保留最近 <!--DAYS--> 天的研究。</span></div>
-    <details class="sync-panel" open><summary>数据同步状态</summary><div id="source-status">正在读取同步记录…</div><a href="https://github.com/liujy25/robot-papers/actions">查看运行记录 ↗</a></details>
+    <details class="sync-panel"><summary>数据同步状态</summary><div id="source-status">正在读取同步记录…</div><a href="https://github.com/liujy25/robot-papers/actions">查看运行记录 ↗</a></details>
   </aside>
   <main id="papers">
-    <section class="hero"><p class="eyebrow"><span></span> THE ROBOTICS RESEARCH BRIEF</p><h1>今天，有什么新进展<span>？</span></h1><p class="intro">从机器人到具身智能，保持对下一步的好奇。</p>
-    <div class="metrics"><div><span>最新论文 / 公告日期</span><strong><!--LATEST--></strong></div><div><span>最近 <!--DAYS--> 天收录</span><strong><!--COUNT--> <small>篇</small></strong></div><div class="build-metric"><span>页面生成时间 · 本地时区</span><time id="build-time" datetime="<!--BUILD_TIME-->"><!--BUILD_TIME--></time></div></div></section>
+    <div class="feed-meta"><span>最新论文 <!--LATEST--></span><span>最近 <!--DAYS--> 天 · <!--COUNT--> 篇</span><span>页面更新 <time id="build-time" datetime="<!--BUILD_TIME-->"><!--BUILD_TIME--></time></span></div>
     <div id="freshness" role="status" hidden></div>
     <section class="toolbar" aria-label="筛选论文"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索标题、作者、摘要…" aria-label="搜索标题、作者、摘要"><kbd>/</kbd></label><div class="filter-row"><div><label><input id="followed" type="checkbox"> 只看关注作者</label><label class="date-filter">时间 <select id="date-filter" aria-label="论文日期"><option value="all">全部日期</option></select></label></div><button id="expand-all" type="button">展开摘要</button></div></section>
     <div class="list-heading"><h2 id="list-title">全部论文</h2><span id="result-count" aria-live="polite"><!--COUNT--> 篇论文</span></div>
     <div id="empty" hidden><h2>没有找到相关论文</h2><p>试试其他关键词，或清除当前筛选。</p><button id="reset">清除筛选</button></div>
     <div id="paper-days"><!--PAPERS--></div>
     <noscript><p>启用 JavaScript 后可以使用搜索和筛选；论文与摘要仍可直接阅读。</p></noscript>
-    <footer>Robot Papers <span>持续关注，持续探索。</span><a href="https://arxiv.org/">数据来自 arXiv ↗</a></footer>
+    <footer>Robot Papers<a href="https://arxiv.org/">数据来自 arXiv ↗</a></footer>
   </main>
 </div>
 </body>
