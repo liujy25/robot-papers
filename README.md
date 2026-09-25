@@ -4,6 +4,14 @@
 
 从 arXiv 聚合 Robotics、Computer Vision、Artificial Intelligence 和 Graphics。支持标题、作者、摘要搜索，分类和日期筛选、关注作者筛选、摘要展开。跨分类论文合并展示，关键词与关注作者高亮。Tab 保持正常键盘导航，`/` 聚焦搜索框。
 
+## 来源与致谢
+
+本项目由 [MLNLP-World/MyArxiv](https://github.com/MLNLP-World/MyArxiv) 模板创建，并针对机器人研究进行定制。感谢 MyArxiv 作者与贡献者提供的开源基础。
+
+早期版本使用 [NotCraft/ArxivFeed](https://github.com/NotCraft/ArxivFeed) 构建论文页面；MyArxiv 的其他参考项目与致谢见[上游 README](https://github.com/MLNLP-World/MyArxiv#参考资源)。2026 年 9 月，本仓库改用 Python 抓取与构建脚本，并调整更新恢复机制、搜索筛选和阅读界面。
+
+本仓库保留原有的 [GNU GPL v2 许可证](LICENSE)。
+
 ## 本地构建
 
 仅需要 Python 3.11+，无需第三方 Python 包：
