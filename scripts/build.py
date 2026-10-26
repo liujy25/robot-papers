@@ -143,18 +143,6 @@ def paper_rank(paper):
     return (int(version[1]) if version else 0, paper.get('metadata_source') != 'rss', date(paper['updated']))
 
 
-def source_cutoff(source, previous, cache, cutoff):
-    last_api = previous.get('last_api_success')
-    if not last_api and previous.get('state') == 'ok':
-        last_api = previous.get('last_success')
-    if last_api and any(source['title'] in subjects for subjects in cache.values()):
-        try:
-            return max(cutoff, date(last_api) - timedelta(days=2))
-        except ValueError:
-            pass
-    return cutoff
-
-
 def paper_key(paper):
     return re.sub(r'v\d+$', '', paper['id'].replace('http://', 'https://'))
 
@@ -293,9 +281,10 @@ def main():
                     last_api_success=old.get('last_api_success') or (old.get('last_success') if old.get('state') == 'ok' else None), state='cached')
         if not args.offline_cache:
             try:
-                fetch_cutoff = source_cutoff(source, old, cache, cutoff)
-                print(f'{title}: querying updates since {stamp(fetch_cutoff)}', flush=True)
-                fetched[title] = fetch_source(source, fetch_cutoff)
+                # Recheck the full retention window: announcement delays can exceed
+                # two days, and a successful empty response must not skip papers.
+                print(f'{title}: querying updates since {stamp(cutoff)}', flush=True)
+                fetched[title] = fetch_source(source, cutoff)
                 item.update(state='ok', last_success=stamp(now()), last_api_success=stamp(now()), count=len(fetched[title]))
                 print(f'{title}: {item["count"]} papers fetched', flush=True)
             except Exception as exc:

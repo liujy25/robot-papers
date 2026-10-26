@@ -98,11 +98,26 @@ class BuildTests(unittest.TestCase):
                 build.request('https://export.arxiv.org/api/query')
         self.assertEqual(get.call_count, 1)
 
-    def test_incremental_cutoff_uses_last_api_success_with_overlap(self):
-        source = {'title':'Robotics'}
-        old = {'state':'rss', 'last_success':'2026-09-16T12:00:00Z', 'last_api_success':'2026-09-12T12:00:00Z'}
-        self.assertEqual(build.source_cutoff(source, old, {'day':{'Robotics':[]}}, self.cutoff), build.date('2026-09-10T12:00:00Z'))
-        self.assertEqual(build.source_cutoff(source, old, {}, self.cutoff), self.cutoff)
+    def test_delayed_paper_is_recovered_after_successful_empty_sync(self):
+        recent = '2026-09-16T10:00:00Z'
+        old = dict(self.paper, id=self.paper['id'].replace('v2', 'v1'),
+                   updated='2026-09-10T12:00:00Z')
+        delayed = dict(self.paper, updated='2026-09-12T12:00:00Z')
+        cache = {'2026-09-10T00:00:00Z': {'Robotics': [old]}}
+        previous = {'sources': {'Robotics': {'state': 'ok', 'count': 0,
+                    'last_success': recent, 'last_api_success': recent}}}
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.object(build.sys, 'argv', ['build.py', '--output', directory]), \
+             patch.object(build, 'now', return_value=build.date('2026-09-16T12:00:00Z')), \
+             patch.object(build, 'request', side_effect=[json.dumps(cache), json.dumps(previous)]), \
+             patch.object(build, 'fetch_source', return_value=[delayed]) as fetch, \
+             redirect_stdout(io.StringIO()):
+            build.main()
+            for call in fetch.call_args_list:
+                self.assertEqual(call.args[1], build.date('2026-09-03T00:00:00Z'))
+            recovered = json.loads((Path(directory) / 'cache.json').read_text())
+            self.assertEqual(recovered['2026-09-12T00:00:00Z']['Robotics'], [delayed])
+            self.assertNotIn('2026-09-10T00:00:00Z', recovered)
 
     def test_api_metadata_wins_over_later_announcement_for_same_version(self):
         rss = dict(self.paper, updated='2026-09-16T04:00:00Z', metadata_source='rss')
